@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+  <style>
+  body {
+    max-width: 650px;
+    height: 100vh;
+    margin: auto;
+    padding: 4em;
+    font-size: 1.5em;
+    font-family: sans-serif;
+    background: linear-gradient(to bottom right, #000, #ffbb33);
+    background-repeat: no-repeat;
+    color: #fff;
+  }
+  #pangram {
+    box-sizing: border-box;
+    width: 100%;
+    border: 1px solid black;
+    padding: 7px;
+    font-size: 1em;
+  }
+  </style>
+</head>
+<body>
+<p>Check if your sentence is a pangram:</p>
+<input id="pangram" type="text" placeholder="Enter your sentence..." />
+<button id="button">Check</button>
+<p id="result"></p>
+
+<script>
+const letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l",
+"m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+
+let missingLetters = (sentence) => {
+  let countMissingLetters = 0;
+
+  let isPangram = true;
+  for (let missingLettersIndex = 0; missingLettersIndex < letters.length; missingLettersIndex++) {
+     var letter = letters[missingLettersIndex];
+     if (sentence.indexOf(letter) === -1){
+       isPangram = false;
+       break;
+     }
+  }
+
+  let result = document.getElementById("result");
+  if (isPangram) {
+    result.innerText = "Your sentence is a pangram.";
+  } else {
+    result.innerText = "Your sentence is not a pangram.";
+  }
+}
+
+const button = document.getElementById('button');
+button.addEventListener('click', () => {
+  let sentence = document.getElementById("pangram");
+  sentence = sentence.value.toLowerCase();
+  missingLetters(sentence);
+  console.log(sentence);
+})
+
+
+
+</script>
+</body>
+</html>
